@@ -1,0 +1,14 @@
+# BLE CTF HACKGNAR
+- gatttool is outdated and doesn't work for me unfortunately, it can't connect to any device
+- so I tried to substitude it with bluetoothctl which works but I can't use the same commands
+- so after running into a lot of issues with the device disconnecting I found the problem which is the integrated Ubuntu bluetooth manager(research what it actually was), after exiting it worked perfectly
+- now for the commands:
+	- bluetoothctl
+	- in the menu I use "devices" to check if I am still connected to the ESP32
+	- to find the mac address I use "scan on" and then "scan off" when I see something interesting to have a look
+	- "connect" and "pair" also work as intended
+	- after connecting "info" is helpful to check the status
+	- after that I want to check out the gatt services for this challenge so i change the menue with "menue gatt" 
+	- then we can run "list-attributes MAC" to list all the attributes ? 
+	- to further investigate attributes we can use "select-attribute uuid?" e.g. select-attribute /org/bluez/hci0/dev_D4_8C_49_6A_02_82/service0028/char0029
+	- after selecting the attribute we can write and read to it, and after selecting the char0029 one and reading we get the current score, which is still 0/20. 
